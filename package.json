@@ -1,0 +1,18 @@
+{
+  "name": "medchatserver",
+  "version": "1.0.0",
+  "main": "medchatserver.js",
+  "scripts": {
+    "server": "node medchatserver.js",
+    "testws": "node test-ws-client.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.50.2",
+    "dotenv": "^17.0.0",
+    "ws": "^8.18.3"
+  }
+}
