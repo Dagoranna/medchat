@@ -1,31 +1,3 @@
-const WebSocket = require("ws");
-const dotenv = require("dotenv");
-dotenv.config({ path: ".env.local" });
-
-const { createClient } = require("@supabase/supabase-js");
-
-const PORT = process.env.PORT || 80;
-
-const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_ANON_KEY
-);
-
-const wss = new WebSocket.Server({ port: PORT });
-
-const users = new Set();
-const usersData = new Map();
-
-function sendToChatPartnersExceptMe(ws, messageJSON) {
-  let currentChat = messageJSON.chat_id;
-  users.forEach((client) => {
-    let clientData = usersData.get(client);
-    if (clientData && clientData.chatId === currentChat && ws !== client) {
-      client.send(JSON.stringify(messageJSON));
-    }
-  });
-}
-
 /*структура базы данных
 1) Таблица пользователей (users)
     id
@@ -62,6 +34,34 @@ function sendToChatPartnersExceptMe(ws, messageJSON) {
   "message": "текст сообщения, если есть",
   "metadata": { дополнительные данные на будущее: message_id, reply_to, attachments и т.д.  }
 */
+
+const WebSocket = require("ws");
+const dotenv = require("dotenv");
+dotenv.config({ path: ".env.local" });
+
+const { createClient } = require("@supabase/supabase-js");
+
+const PORT = process.env.PORT || 80;
+
+const supabase = createClient(
+  process.env.SUPABASE_URL,
+  process.env.SUPABASE_ANON_KEY
+);
+
+const wss = new WebSocket.Server({ port: PORT });
+
+const users = new Set();
+const usersData = new Map();
+
+function sendToChatPartnersExceptMe(ws, messageJSON) {
+  let currentChat = messageJSON.chat_id;
+  users.forEach((client) => {
+    let clientData = usersData.get(client);
+    if (clientData && clientData.chatId === currentChat && ws !== client) {
+      client.send(JSON.stringify(messageJSON));
+    }
+  });
+}
 
 wss.on("connection", (ws) => {
   users.add(ws);

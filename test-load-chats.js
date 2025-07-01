@@ -57,7 +57,7 @@ function requestMessages(chat_id) {
 
     const optionsMessages = {
       hostname: "localhost",
-      port: 3001, // предполагаем, что messages эндпойнт на 3001
+      port: 3001,
       path: "/messages",
       method: "POST",
       headers: {

@@ -1,4 +1,3 @@
-// messages-endpoint.js
 const http = require("http");
 const { createClient } = require("@supabase/supabase-js");
 require("dotenv").config({ path: ".env.local" });

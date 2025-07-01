@@ -7,7 +7,6 @@ const CHAT = {};
 ws.on("open", () => {
   console.log("Connected to server");
 
-  // Пример: отправляем запрос на userdata
   const userdataMsg = {
     action: "userdata",
     email: "patient1@test.com",
