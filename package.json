@@ -4,7 +4,10 @@
   "main": "medchatserver.js",
   "scripts": {
     "server": "node medchatserver.js",
-    "testws": "node test-ws-client.js"
+    "testws": "node test-ws-client.js",
+    "chatlist": "node load_chat_list.js",
+    "messagelist": "node load_message_list.js",
+    "textload": "node test-load-chats.js"
   },
   "keywords": [],
   "author": "",
